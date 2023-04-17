@@ -6,13 +6,20 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={{
-              alignItems: 'center',
-              backgroundColor: '#DDDDDD',
-              padding: 10,
-              borderRadius: 20,
-        }} onPress={this.onPress}>
-          <Text>Aperte Aqui</Text>
+        <TouchableOpacity 
+          onPress={this.onPress}
+          style={{
+            height: 50,
+            width: 50,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#ccc',
+            padding: 10,
+            borderWidth: 1,
+            borderColor: 'black',
+          }} 
+        >
+          <Text>1</Text>
         </TouchableOpacity>
         <StatusBar style="auto" />
       </View>
