@@ -1,12 +1,19 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        <TouchableOpacity style={{
+              alignItems: 'center',
+              backgroundColor: '#DDDDDD',
+              padding: 10,
+              borderRadius: 20,
+        }} onPress={this.onPress}>
+          <Text>Aperte Aqui</Text>
+        </TouchableOpacity>
         <StatusBar style="auto" />
       </View>
     );  
