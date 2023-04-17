@@ -1,151 +1,26 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import CustomButton from './src/components/CustomButton';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <View style={{flexDirection: 'row'}}>
-          <TouchableOpacity 
-            onPress={this.onPress}
-            style={{
-              height: 50,
-              width: 50,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#ccc',
-              padding: 10,
-              borderWidth: 1,
-              borderColor: 'black',
-            }} 
-          >
-            <Text>1</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            onPress={this.onPress}
-            style={{
-              height: 50,
-              width: 50,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#ccc',
-              padding: 10,
-              borderWidth: 1,
-              borderColor: 'black',
-            }} 
-          >
-            <Text>2</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            onPress={this.onPress}
-            style={{
-              height: 50,
-              width: 50,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#ccc',
-              padding: 10,
-              borderWidth: 1,
-              borderColor: 'black',
-            }} 
-          >
-            <Text>3</Text>
-          </TouchableOpacity>
+          <CustomButton texto='1' /> 
+          <CustomButton texto='2' /> 
+          <CustomButton texto='3' /> 
         </View>
         <View style={{flexDirection: 'row'}}>
-          <TouchableOpacity 
-            onPress={this.onPress}
-            style={{
-              height: 50,
-              width: 50,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#ccc',
-              padding: 10,
-              borderWidth: 1,
-              borderColor: 'black',
-            }} 
-          >
-            <Text>4</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            onPress={this.onPress}
-            style={{
-              height: 50,
-              width: 50,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#ccc',
-              padding: 10,
-              borderWidth: 1,
-              borderColor: 'black',
-            }} 
-          >
-            <Text>5</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            onPress={this.onPress}
-            style={{
-              height: 50,
-              width: 50,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#ccc',
-              padding: 10,
-              borderWidth: 1,
-              borderColor: 'black',
-            }} 
-          >
-            <Text>6</Text>
-          </TouchableOpacity>
+          <CustomButton texto='4' /> 
+          <CustomButton texto='5' /> 
+          <CustomButton texto='6' /> 
         </View>
         <View style={{flexDirection: 'row'}}>
-          <TouchableOpacity 
-            onPress={this.onPress}
-            style={{
-              height: 50,
-              width: 50,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#ccc',
-              padding: 10,
-              borderWidth: 1,
-              borderColor: 'black',
-            }} 
-          >
-            <Text>7</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            onPress={this.onPress}
-            style={{
-              height: 50,
-              width: 50,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#ccc',
-              padding: 10,
-              borderWidth: 1,
-              borderColor: 'black',
-            }} 
-          >
-            <Text>8</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            onPress={this.onPress}
-            style={{
-              height: 50,
-              width: 50,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#ccc',
-              padding: 10,
-              borderWidth: 1,
-              borderColor: 'black',
-            }} 
-          >
-            <Text>9</Text>
-          </TouchableOpacity>
+          <CustomButton texto='7' /> 
+          <CustomButton texto='8' /> 
+          <CustomButton texto='9' /> 
         </View>
         <StatusBar style="auto" />
       </View>
