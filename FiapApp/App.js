@@ -21,6 +21,36 @@ export default class App extends React.Component {
         >
           <Text>1</Text>
         </TouchableOpacity>
+        <TouchableOpacity 
+          onPress={this.onPress}
+          style={{
+            height: 50,
+            width: 50,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#ccc',
+            padding: 10,
+            borderWidth: 1,
+            borderColor: 'black',
+          }} 
+        >
+          <Text>2</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          onPress={this.onPress}
+          style={{
+            height: 50,
+            width: 50,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#ccc',
+            padding: 10,
+            borderWidth: 1,
+            borderColor: 'black',
+          }} 
+        >
+          <Text>3</Text>
+        </TouchableOpacity>
         <StatusBar style="auto" />
       </View>
     );  
