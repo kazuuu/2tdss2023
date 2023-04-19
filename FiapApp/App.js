@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: 300,
     marginTop: 20,
+    marginHorizontal: 20,
     paddingHorizontal: 10,
     alignSelf: 'center',
   },
