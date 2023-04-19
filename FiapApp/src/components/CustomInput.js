@@ -1,20 +1,16 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Platform, StyleSheet, Text, TextInput, View } from 'react-native';
-import CustomInput from './src/components/CustomInput';
 
-export default class App extends React.Component {
+export default class CustomInput extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={[styles.largeText, styles.textStyle]}>São Paulo</Text>
-        <Text style={[styles.smallText, styles.textStyle]}>Light Cloud</Text>
-        <Text style={[styles.largeText, styles.textStyle]}>24º</Text>
-
-        <CustomInput placeholder='Search and City' />
-
-        <StatusBar style="auto" />
-      </View>
+        <TextInput 
+          autoCorrect='false'
+          placeholder={this.props.placeholder}
+          placeholderTextColor='white'
+          style={styles.textInput}
+        />
     );  
   }
 }
@@ -38,5 +34,15 @@ const styles = StyleSheet.create({
   },
   largeText: { 
     fontSize: 44,
+  },
+  textInput: {
+    backgroundColor: '#666',
+    color: 'white',
+    height: 40,
+    width: 300,
+    marginTop: 20,
+    marginHorizontal: 20,
+    paddingHorizontal: 10,
+    alignSelf: 'center',
   },
 });
