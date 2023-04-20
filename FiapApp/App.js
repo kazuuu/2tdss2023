@@ -2,6 +2,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { ImageBackground, Platform, StyleSheet, Text, TextInput, View } from 'react-native';
 import CustomInput from './src/components/CustomInput';
+import getImage from './src/utils/ImagesForWeather';
 
 export default class App extends React.Component {
   render() {
@@ -9,7 +10,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <ImageBackground 
           resizeMode='cover'
-          source={require('./assets/images/Clear.jpeg')}
+          source={getImage('Clouds')}
           style={{
             flex: 1,
             alignItems: 'center',
