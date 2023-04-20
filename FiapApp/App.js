@@ -7,8 +7,8 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require('./assets/fiap_logo.png')}
-          resizeMode = 'contain'
+          source={{uri: 'https://picsum.photos/200/300'}}
+          resizeMode = 'cover'
           style={{
             flex: 1,
             alignItems: 'center',
