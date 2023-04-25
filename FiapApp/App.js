@@ -7,11 +7,10 @@ export default class App extends React.Component {
     return (
       <View style={{ 
         flex: 1,
-        flexDirection: 'row',
         alignItems: 'center',
       }}>
         <View style={{ height: 50, width: 50, backgroundColor: 'red'}} />
-        <View style={{ height: 50, width: 50, backgroundColor: 'green'}} />
+        <View style={{ height: 50, width: 50, backgroundColor: 'green', alignSelf: 'flex-start'}} />
         <View style={{ height: 50, width: 50, backgroundColor: 'blue'}} />
         <StatusBar style="auto" />
       </View>
