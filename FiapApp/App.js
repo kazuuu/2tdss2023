@@ -6,9 +6,9 @@ export default class App extends React.Component {
   render() {
     return (
       <View>
-        <View style={{ height: 50, width: 50, backgroundColor: 'powderblue'}} />
-        <View style={{ height: 50, width: 50, backgroundColor: 'skyblue'}} />
-        <View style={{ height: 50, width: 50, backgroundColor: 'steelblue'}} />
+        <View style={{ height: 50, width: 50, backgroundColor: 'red'}} />
+        <View style={{ height: 50, width: 50, backgroundColor: 'green'}} />
+        <View style={{ height: 50, width: 50, backgroundColor: 'blue'}} />
         <StatusBar style="auto" />
       </View>
     )
