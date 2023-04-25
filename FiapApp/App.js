@@ -8,7 +8,7 @@ export default class App extends React.Component {
       <View style={{ 
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'center'
+        alignItems: 'center',
       }}>
         <View style={{ height: 50, width: 50, backgroundColor: 'red'}} />
         <View style={{ height: 50, width: 50, backgroundColor: 'green'}} />
