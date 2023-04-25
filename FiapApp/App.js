@@ -5,12 +5,14 @@ import { View } from 'react-native';
 export default class App extends React.Component {
   render() {
     return (
-      <View>
-        <View style={{ height: 50, width: 50, backgroundColor: 'powderblue'}} />
-        <View style={{ height: 50, width: 50, backgroundColor: 'skyblue'}} />
-        <View style={{ height: 50, width: 50, backgroundColor: 'steelblue'}} />
+      <View style={{ height: '100%', width: '100%'}}>
+        <View style={{ height: '10%', width: '10%', backgroundColor: 'powderblue'}} />
+        <View style={{ height: '10%', width: '10%', backgroundColor: 'skyblue'}} />
+        <View style={{ height: '10%', width: '10%', backgroundColor: 'steelblue'}} />
         <StatusBar style="auto" />
       </View>
     )
   }
 }
+
+
