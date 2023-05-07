@@ -6,6 +6,10 @@ export default function App() {
 
   useEffect(() => {
     alert('Componente renderizado!');
+
+    return () => {
+      console.log('Componente desmontado');
+    }
   }, [])
   
   return (
