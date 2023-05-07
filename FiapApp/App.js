@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Text, View } from 'react-native';
 
 export default function App() {
   const [contador, setContador] = useState(0);
 
+  useEffect(() => {
+    alert('Componente renderizado!');
+  })
+  
   return (
     <View style={{
       flex: 1,
