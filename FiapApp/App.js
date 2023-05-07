@@ -4,6 +4,7 @@ import { Button, Text, View } from 'react-native';
 export default function App() {
   const [contador, setContador] = useState(0);
 
+  useEffect
   return (
     <View style={{
       flex: 1,
