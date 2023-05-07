@@ -1,22 +1,18 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-const Ola = (props) => <Text>{`Olá, ${props.saudacao} ${props.nome}`}</Text>
+import { useState } from 'react';
+import { Button, Text, View } from 'react-native';
 
 export default function App() {
+  const [contador, setContador] = useState(0);
+
   return (
-    <View style={styles.container}>
-      <Ola saudacao = 'Sr.' nome = 'Joao' />
+    <View style={{
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}>
+      <Text>Nº de cliques: {contador}</Text>
+      <Button title="Clique Aqui" onPress={() => setContador(contador + 1)} />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
