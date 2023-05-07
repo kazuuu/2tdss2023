@@ -6,7 +6,7 @@ export default function App() {
 
   useEffect(() => {
     alert('Componente renderizado!');
-  })
+  }, [])
   
   return (
     <View style={{
