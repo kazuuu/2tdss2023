@@ -2,11 +2,12 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
+const Ola = (props) => <Text>{`Olá, ${props.saudacao} ${props.nome}`}</Text>
+
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Ola saudacao = 'Sr.' nome = 'Joao' />
     </View>
   );
 }
