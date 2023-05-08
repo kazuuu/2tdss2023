@@ -13,7 +13,11 @@ export default function App() {
           component={HomeScreen} 
           options={{title: 'Visão Geral'}}
         />
-        <Stack.Screen name="Detalhes" component={DetalhesScreen} />
+        <Stack.Screen 
+          name="Detalhes" 
+          component={DetalhesScreen} 
+          options={({route}) => ({title: route.params.nome})}
+        />
       </Stack.Navigator>
     </NavigationContainer>    
   );
@@ -26,8 +30,7 @@ function HomeScreen({ navigation }) {
       <Button 
         title='Ir Para Detalhes' 
         onPress={() => navigation.navigate("Detalhes", {
-          itemId: 86,
-          otherParam: 'anything you want here',
+          nome: 'Teste1',
         })}
       />
     </View>
@@ -40,8 +43,6 @@ function DetalhesScreen({ route, navigation }) {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text>DETALHES</Text>
-      <Text>itemId: {JSON.stringify(itemId)}</Text>
-      <Text>otherParam: {JSON.stringify(otherParam)}</Text>
       <Button 
         title='Ir Para Detalhes novamente' 
         onPress={() => navigation.push("Detalhes")}
