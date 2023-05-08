@@ -39,6 +39,14 @@ function DetalhesScreen({ navigation }) {
         title='Ir Para Detalhes novamente' 
         onPress={() => navigation.push("Detalhes")}
       />
+      <Button 
+        title='Voltar' 
+        onPress={() => navigation.goBack()}
+      />
+      <Button 
+        title='Voltar para a primeira tela da pilha' 
+        onPress={() => navigation.popToTop()}
+      />
     </View>
   );
 }
