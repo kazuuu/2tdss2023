@@ -25,16 +25,23 @@ function HomeScreen({ navigation }) {
       <Text>HOME</Text>
       <Button 
         title='Ir Para Detalhes' 
-        onPress={() => navigation.navigate("Detalhes")}
+        onPress={() => navigation.navigate("Detalhes", {
+          itemId: 86,
+          otherParam: 'anything you want here',
+        })}
       />
     </View>
   );
 }
 
-function DetalhesScreen({ navigation }) {
+function DetalhesScreen({ route, navigation }) {
+  const { itemId, otherParam } = route.params;
+
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text>DETALHES</Text>
+      <Text>itemId: {JSON.stringify(itemId)}</Text>
+      <Text>otherParam: {JSON.stringify(otherParam)}</Text>
       <Button 
         title='Ir Para Detalhes novamente' 
         onPress={() => navigation.push("Detalhes")}
