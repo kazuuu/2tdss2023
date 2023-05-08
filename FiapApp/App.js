@@ -11,7 +11,16 @@ export default function App() {
         <Stack.Screen 
           name="Home" 
           component={HomeScreen} 
-          options={{title: 'Visão Geral'}}
+          options={{
+            title: 'Visão Geral',
+            headerStyle: {
+              backgroundColor: '#f4511e'
+            },
+            headerTintColor: '#FFF',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }}
         />
         <Stack.Screen 
           name="Detalhes" 
