@@ -33,7 +33,7 @@ function DetalhesScreen({ navigation }) {
       <Text>DETALHES</Text>
       <Button 
         title='Ir Para Detalhes novamente' 
-        onPress={() => navigation.navigate("Detalhes")}
+        onPress={() => navigation.push("Detalhes")}
       />
     </View>
   );
