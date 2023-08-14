@@ -16,12 +16,12 @@ const App = () => {
     { id: 8, nome: 'Celia' },
     { id: 9, nome: 'Celia' },
     { id: 10, nome: 'Celia' },
-    { id: 10, nome: 'Celia' },
-    { id: 10, nome: 'Celia' },
-    { id: 10, nome: 'Celia' },
-    { id: 10, nome: 'Celia' },
     { id: 11, nome: 'Celia' },
-    { id: 12, nome: 'TESTE' },
+    { id: 12, nome: 'Celia' },
+    { id: 13, nome: 'Celia' },
+    { id: 14, nome: 'Celia' },
+    { id: 15, nome: 'Celia' },
+    { id: 16, nome: 'TESTE' },
   ]);
 
   return (
