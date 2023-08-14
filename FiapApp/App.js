@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Pressable } from 'react-native';
+import { Button } from 'react-native';
 
 
 const App = () => {
@@ -39,6 +40,10 @@ const App = () => {
         renderItem={({item}) => (
           <View style={styles.item}>
             <Text style={styles.font3}>{item.id} - {item.nome}</Text>
+
+            <Pressable>
+              <Text style={styles.font4}>X</Text>
+            </Pressable>
           </View>
         )}
         keyExtractor={item => item.id.toString()}
@@ -63,6 +68,7 @@ const styles = StyleSheet.create({
   },
   item: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     backgroundColor: '#ccc',
     padding: 10,
     borderRadius: 10,
