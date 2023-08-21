@@ -19,7 +19,17 @@ const categories = [
         id: 3,
         name: "Rice Item",
         icon: require("../../assets/icons/rice.png")
-    }
+    },
+    {
+        id: 4,
+        name: "Rice Item",
+        icon: require("../../assets/icons/rice.png")
+    },
+    {
+        id: 5,
+        name: "Rice Item",
+        icon: require("../../assets/icons/rice.png")
+    },
 ]
 
 const hamburger = {

@@ -4,35 +4,42 @@ import {
   Text,
   View,
   FlatList,
-  Image
+  Image,
+  Pressable
 } from 'react-native';
 
 import api from '../constants/dummyData'
 
-const CategoryItem = ({data}) => {
-    return (
-        <View style={styles.container}>
-            <Image
-                source={data.icon}
-                style={{
-                    height: 20,
-                    width: 20,
-                    tintColor: '#000',
-                }}
-            />            
-            <Text>{data.name}</Text>
-        </View>
-    );
-  };
-  
-const styles = StyleSheet.create({
+const CategoryItem = ({data, selected, onClick}) => {
+  const styles = StyleSheet.create({
     container: {
-        borderRadius: 10,
-        flexDirection: 'row',
-        backgroundColor: 'orange',
-
-
+      flexDirection: 'row',
+      alignItems: 'center',
+      borderRadius: 8,
+      padding: 8,
+      margin: 8,
+      backgroundColor: selected ? 'orange' : '#ccc',
+    },
+    text: {
+      fontSize: 22,
     },
   });
-  
-  export default CategoryItem;
+
+  return (
+    <Pressable 
+      onPress={() => onClick(data.id)}
+      style={styles.container}
+    >
+      <Image
+        source={data.icon}
+        style={{
+        height: 50,
+        width: 50,
+        }}
+      />            
+      <Text style={styles.text}>{data.name}</Text>
+    </Pressable>
+  );
+};
+
+export default CategoryItem;

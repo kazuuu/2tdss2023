@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,16 +9,21 @@ import {
 import api from '../constants/dummyData'
 import CategoryItem from '../components/categoryItem';
 
+
 const HomeScreen = () => {
-    return (
+  const [selectedCategoryId, setSelectedCategoryId] = useState(-1);
+
+  const clickCategory = (categoryId) => {
+    setSelectedCategoryId(categoryId);
+  }
+
+  return (
         <View style={styles.container}>
             <FlatList
-              style={{
-                flexDirection: 'row'
-              }}
+              horizontal
               data={api.categories}
               renderItem={({item}) => (
-                <CategoryItem data={item} />
+                <CategoryItem data={item} selected={item.id == selectedCategoryId} onClick={clickCategory} />
               )}
               keyExtractor={item => item.id.toString()}
             />
