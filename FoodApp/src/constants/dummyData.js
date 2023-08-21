@@ -20,16 +20,6 @@ const categories = [
         name: "Rice Item",
         icon: require("../../assets/icons/rice.png")
     },
-    {
-        id: 4,
-        name: "Rice Item",
-        icon: require("../../assets/icons/rice.png")
-    },
-    {
-        id: 5,
-        name: "Rice Item",
-        icon: require("../../assets/icons/rice.png")
-    },
 ]
 
 const hamburger = {
@@ -75,6 +65,19 @@ const wrapSandwich = {
     isfavorite: true,
     image: require("../../assets/dummyData/wrap_sandwich.png")
 }
+
+const foodListTemp1 = [
+    hamburger, wrapSandwich, vegBiryani
+]
+
+const foodListTemp2 = [
+    wrapSandwich, hotTacos, vegBiryani
+]
+
+const foodListTemp3 = [
+    hotTacos, vegBiryani, wrapSandwich
+]
+
 
 const menu = [
     {
@@ -237,4 +240,7 @@ export default {
     myCards,
     allCards,
     fromLocs,
+    foodListTemp1,
+    foodListTemp2,
+    foodListTemp3,
 }
