@@ -5,12 +5,13 @@ import {
   View,
   FlatList,
   Image,
-  Pressable
+  Pressable,
+  Button
 } from 'react-native';
 
 import api from '../constants/dummyData'
 
-const FoodItem = ({data, selected, onClick}) => {
+const FoodItem = ({data, selected, Bottom}) => {
   const styles = StyleSheet.create({
     container: {
       flexDirection: 'column',
@@ -44,7 +45,7 @@ const FoodItem = ({data, selected, onClick}) => {
 
   return (
     <Pressable 
-      onPress={() => onClick(data.id)}
+      onPress={() => null}
       style={styles.container}
     >
       <View style={styles.topView}>
@@ -86,6 +87,9 @@ const FoodItem = ({data, selected, onClick}) => {
       </View>
       <View style={styles.conteudo}>
         <Text style={styles.textMedium}>R$ {data.price}</Text>
+      </View>
+      <View style={styles.conteudo}>
+          <Bottom />
       </View>
     </Pressable>
   );

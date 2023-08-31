@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './src/screens/HomeScreen';
-import AboutScreen from './src/screens/AboutScreen';
+import PedidoScreen from './src/screens/PedidoScreen';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import { View, Text } from 'react-native';
 
@@ -39,9 +39,9 @@ const App = () => {
             }}
           />
           <Tab.Screen 
-            name="About" component={AboutScreen} 
+            name="Pedido" component={PedidoScreen} 
             options={{
-              tabBarLabel: 'About',
+              tabBarLabel: 'Pedido',
               tabBarIcon: ({focused, color, size}) => (
                 <Ionicons name="information-circle" color={color} size={size} />
               )
