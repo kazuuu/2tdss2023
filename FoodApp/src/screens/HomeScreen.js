@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -11,10 +11,33 @@ import {
 import api from '../constants/dummyData'
 import CategoryItem from '../components/categoryItem';
 import FoodItem from '../components/foodItem';
+import { PedidosContext } from '../contexts/PedidosContext';
 
 const HomeScreen = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(-1);
   const [foodList, setFoodList] = useState([]);
+
+  const [pedidos, setPedidos] = useContext(PedidosContext);
+
+  useEffect(() => {
+    // declare the data fetching function
+    const fetchData = async () => {
+      let s = await AsyncStorage.getItem('pedidos');
+      console.log("Pedidos 1", s)
+      if (s != null) {
+        await setPedidos(JSON.parse(s));  
+      }
+
+      console.log("Pedido 2", pedidos);   
+    }
+  
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);
+  }, []);
+
+
 
   const clickCategory = (categoryId) => {
     setSelectedCategoryId(categoryId);
@@ -25,20 +48,18 @@ const HomeScreen = () => {
       setFoodList(api.foodListTemp2);
     else if (categoryId == 3)
       setFoodList(api.foodListTemp3);
-
   }
 
   const clickAdicionarFood = async (food) => {
     console.log("Adicionar 1", food)
     let s = await AsyncStorage.getItem('pedidos');
-    let pedidos;
 
     if (s == null) {
       console.log("Adicionar 2")
-      pedidos = [];
+      await setPedidos([]);
     } else {
       console.log("Adicionar 3", s)
-      pedidos = JSON.parse(s);
+      await setPedidos(JSON.parse(s));
       console.log("Adicionar 4", pedidos)
     }
       
@@ -58,12 +79,13 @@ const HomeScreen = () => {
     //    await pedidos.push(food);
     // ou com spread operator:
     //    pedidos = [...pedidos, food];
-    pedidos = [...pedidos, food];
+    await setPedidos([...pedidos, food]);
     console.log("Adicionar 6", pedidos);
 
     // Lembrar de transformar o objeto em uma string antes de gravar
     // no AsyncStorage
     await AsyncStorage.setItem('pedidos', JSON.stringify(pedidos));
+
   }
 
   return (

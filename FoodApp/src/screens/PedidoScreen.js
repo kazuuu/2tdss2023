@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,28 +8,10 @@ import {
   Button,
 } from 'react-native';
 import FoodItem from '../components/foodItem';
+import { PedidosContext } from '../contexts/PedidosContext';
 
 const PedidoScreen = () => {
-  [pedidos, setPedidos] = useState([]);
-
-  
-  useEffect(() => {
-    // declare the data fetching function
-    const fetchData = async () => {
-      let s = await AsyncStorage.getItem('pedidos');
-      console.log("Pedidos 1", s)
-      if (s != null) {
-        await setPedidos(JSON.parse(s));  
-      }
-
-      console.log("Pedido 2", pedidos);   
-    }
-  
-    // call the function
-    fetchData()
-      // make sure to catch any error
-      .catch(console.error);
-  }, []);
+  [pedidos, setPedidos] = useContext(PedidosContext);
 
   const clickRemoverFood = async (idCart) => {
     console.log("remover 1", idCart)
