@@ -11,6 +11,7 @@ import FoodItem from '../components/foodItem';
 
 const PedidoScreen = () => {
   [pedidos, setPedidos] = useState([]);
+
   
   useEffect(() => {
     // declare the data fetching function
@@ -18,7 +19,7 @@ const PedidoScreen = () => {
       let s = await AsyncStorage.getItem('pedidos');
       console.log("Pedidos 1", s)
       if (s != null) {
-        setPedidos(JSON.parse(s));  
+        await setPedidos(JSON.parse(s));  
       }
 
       console.log("Pedido 2", pedidos);   
@@ -51,7 +52,7 @@ const PedidoScreen = () => {
             );
           }} />
         )}
-        keyExtractor={item => item.idCart.toString()}
+        keyExtractor={item => item.idCart}
       />
 
     </View>
