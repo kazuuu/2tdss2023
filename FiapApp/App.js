@@ -1,26 +1,11 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Header from './src/components/Header';
-import { ThemeContext, themes } from './src/context/ThemeContext'
-import ThemeToggler from './src/components/Toggler';
-
+import React from 'react';
+import AuthContextProvider from './src/contexts/AuthContextProvider'
+import HomeScreen from './src/screens/HomeScreen';
 
 export default function App() {
-  const [theme, setTheme] = useState(themes.light)
-
   return (
-    <ThemeContext.Provider value={[theme, setTheme]}>
-      <Header />
-      <ThemeToggler />
-    </ThemeContext.Provider>
+    <AuthContextProvider>
+      <HomeScreen />
+    </AuthContextProvider>
   );  
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
