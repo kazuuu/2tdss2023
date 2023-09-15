@@ -9,11 +9,17 @@ export default function AuthContextProvider({children}) {
   const [loggedIn, setLoggedIn] = useState(false);
 
   function signIn(username, password) {
-    setCurrentUser({
-      username: username,
-    });
+    if (password == "123") {
+      setCurrentUser({
+        username: username,
+      });
+  
+      setLoggedIn(true);
 
-    setLoggedIn(true);
+      return true;
+    } else {
+      return false;
+    }
   }
 
   function logout() {
