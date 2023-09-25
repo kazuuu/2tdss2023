@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Pressable, StatusBar, FlatList, 
   TextInput, ActivityIndicator, Modal } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { signOut } from 'firebase/auth';
+import { auth, db } from '../configs/fiap_firebase';
+import { query, ref, orderByChild, equalTo, onValue } from 'firebase/database';
 
 export default function ListaScreen({ navigation }) {
   const [data, setData] = useState([]);
@@ -11,9 +14,34 @@ export default function ListaScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => { 
+    console.log('Effect 1');
+    // Se já estiver autenticado, redirecionar para a tela de Lista
+    auth.onAuthStateChanged((user) => {
+        console.log('Effect 2', user);
+        
+      if (user == null) {
+        navigation.replace('Login');
+      } else {
+        const currentUserItemsRef = query(ref(db, 'items'), orderByChild('userId'), equalTo(auth.currentUser.uid));
+
+        onValue(currentUserItemsRef, (snapshot) => {
+          setData([]);
+          const data = snapshot.val();
+          if (data !== null) {
+            Object.values(data).map((item) => {
+              setData((oldArray) => [...oldArray, item]);
+            });
+          }
+        });
+
+      }
+    });
+  }, []);
+
 
   const sair = () => {
-   
+   signOut(auth);
   }
 
   // add

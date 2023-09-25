@@ -1,13 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TextInput, 
   Pressable, StatusBar } from 'react-native';
+import { auth } from '../configs/fiap_firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function LoginScreen({ navigation }) {
   const [inputEmail, setInputEmail] = useState('');
   const [inputPassword, setInputPassword] = useState('');
 
-  const login = () => {}
-  
+  useEffect(() => { 
+    console.log('Effect 1');
+    // Se já estiver autenticado, redirecionar para a tela de Lista
+    auth.onAuthStateChanged((user) => {
+        console.log('Effect 2', user);
+        
+      if (user != null) {
+        navigation.replace('Lista');
+      }
+    });
+  }, []);
+
+  const login = () => {
+    signInWithEmailAndPassword(auth, inputEmail, inputPassword).then(() => {
+        navigation.replace('Lista')
+    })
+    .catch((err) => {
+        console.log("Sign In Error", err)
+    })
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.bodyContainer}>
@@ -35,7 +56,7 @@ export default function LoginScreen({ navigation }) {
           </Pressable >
         </View>
         <View style={styles.cadastrarRow}>
-          <Pressable style={styles.buttonCadastrar} onPress={() => alert('Cadastrar')}>
+          <Pressable style={styles.buttonCadastrar} onPress={() => navigation.replace('Cadastrar')}>
             <Text>Não tem cadastro? Cadastre-se</Text>
           </Pressable>
         </View>

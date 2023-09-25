@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TextInput, 
   Pressable, StatusBar } from 'react-native';
+import { auth } from '../configs/fiap_firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function CadastrarScreen({ navigation }) {
   const [registerInformation, setRegisterInformation] = useState({
@@ -11,7 +13,22 @@ export default function CadastrarScreen({ navigation }) {
   });
 
   const cadastrar = async () => {
-   
+    if (registerInformation.email == '') {
+        alert('Favor preencher com seu email');
+        return;
+    }
+
+    if (registerInformation.senha == '') {
+        alert('Favor preencher sua senha');
+        return;
+    }
+
+    createUserWithEmailAndPassword(auth, registerInformation.email, registerInformation.senha)
+    .then(() => {
+        navigation.replace('Lista')
+    }).catch((err) => {
+        console.log("Criar Usuario", err)
+    });
   };
 
   return (
