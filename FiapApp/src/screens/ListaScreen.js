@@ -4,8 +4,9 @@ import { StyleSheet, View, Text, Pressable, StatusBar, FlatList,
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { signOut } from 'firebase/auth';
 import { auth, db } from '../configs/fiap_firebase';
-import { query, ref, orderByChild, equalTo, onValue } from 'firebase/database';
-
+import { set, ref, onValue, remove, update, equalTo, query, 
+    orderByChild, push, child } from "firebase/database";
+  
 export default function ListaScreen({ navigation }) {
   const [data, setData] = useState([]);
   const [inputItem, setInputItem] = useState('');
@@ -46,17 +47,53 @@ export default function ListaScreen({ navigation }) {
 
   // add
   const adicionar = () => {
-   
+    setLoading(true);
+    const id = push(child(ref(db), 'items')).key
+
+    set(ref(db, `/items/${id}`), {
+      id: id,
+      descricao: inputItem,
+      userId: auth.currentUser.uid,
+    })
+    .catch((err) => {
+      alert(err.message);
+    })
+    .finally(() => {
+      setLoading(false)
+    });
+
+    setInputItem('');
   };
 
   // update
   const alterar = () => {
-  
+    setLoading(true);
+
+    update(ref(db, `/items/${itemEditId}`), {
+      descricao: inputItemEdit
+    })
+    .catch((err) => {
+      alert(err.message);
+    })
+    .finally(() => {
+      setLoading(false)
+    });
+
+    setInputItemEdit('');
+    setItemEditId('');
+    setModalVisible(false);
   };
 
   // delete
   const deletar = (id) => {
-   
+    setLoading(true);
+    remove(ref(db, `/items/${id}`))
+    .catch((err) => {
+      alert(err.message);
+    })
+    .finally(() => {
+      setLoading(false)
+    });
   };
 
   const openEditModal = (id, text) => {
