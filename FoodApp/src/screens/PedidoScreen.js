@@ -9,9 +9,30 @@ import {
 } from 'react-native';
 import FoodItem from '../components/foodItem';
 import { PedidosContext } from '../contexts/PedidosContext';
+import { db } from '../configs/firebaseConfig';
+import { push, set, ref, onValue, remove, update, child } from 'firebase/database';
 
 const PedidoScreen = () => {
-  [pedidos, setPedidos] = useContext(PedidosContext);
+
+  const { pedidos, setPedidos } = useContext(PedidosContext);
+
+  useEffect(() => { 
+
+    console.log("home init", pedidos);
+
+    onValue(ref(db, '/pedidos'), (snapshot) => {
+      console.log("home onValue snapshot", snapshot.val());
+      const data = snapshot.val();
+      if (data != null) {
+        Object.values(data).map(async (item) => {
+          console.log("home onValue addItem 1", item);
+          await setPedidos((oldArray) => [...oldArray, item])
+          console.log("home onValue addItem 2", pedidos);
+        });
+      }
+    });
+
+  }, []);
 
   const clickRemoverFood = async (idCart) => {
     console.log("remover 1", idCart)

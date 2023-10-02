@@ -12,6 +12,7 @@ import {
 import api from '../constants/dummyData'
 
 const FoodItem = ({data, selected, Bottom}) => {
+  console.log("Food Item", data);
   const styles = StyleSheet.create({
     container: {
       flexDirection: 'column',
@@ -71,13 +72,13 @@ const FoodItem = ({data, selected, Bottom}) => {
       </View>
 
       <View style={styles.conteudo}>
-        <Image
-          source={data.image}
+        {/* <Image
+          source={require({data.imageFile})}
           style={{
           height: 200,
           width: 200,
           }}
-        />            
+        />             */}
       </View>
       <View style={styles.conteudo}>
         <Text style={styles.textLarge}>{data.name}</Text>

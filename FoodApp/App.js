@@ -6,17 +6,15 @@ import HomeScreen from './src/screens/HomeScreen';
 import PedidoScreen from './src/screens/PedidoScreen';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import { View, Text } from 'react-native';
-import { PedidosContext } from './src/contexts/PedidosContext';
+import { PedidosContextProvider } from './src/contexts/PedidosContext';
 
 const Stack = createNativeStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
 const App = () => {
-  const [pedidos, setPedidos] = useState([]);
-
   return (
-    <PedidosContext.Provider value={[pedidos, setPedidos]}>
+    <PedidosContextProvider>
       <NavigationContainer>
         {/* <Stack.Navigator initialRouteName='Home'>
           <Stack.Screen name="Home" component={HomeScreen} />
@@ -53,7 +51,7 @@ const App = () => {
           />
         </Tab.Navigator>        
       </NavigationContainer>
-    </PedidosContext.Provider>      
+    </PedidosContextProvider>      
   );
 };
 
