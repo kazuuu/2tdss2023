@@ -18,20 +18,18 @@ const PedidoScreen = () => {
 
   useEffect(() => { 
 
-    console.log("home init", pedidos);
+    const init = async () => {
+      onValue(ref(db, '/pedidos'), (snapshot) => {
+        const data = snapshot.val();
+        if (data != null) {
+          Object.values(data).map((item) => {
+            setPedidos(oldArray => [...oldArray, item])
+          });
+        }
+      });
+    }
 
-    onValue(ref(db, '/pedidos'), (snapshot) => {
-      console.log("home onValue snapshot", snapshot.val());
-      const data = snapshot.val();
-      if (data != null) {
-        Object.values(data).map(async (item) => {
-          console.log("home onValue addItem 1", item);
-          await setPedidos((oldArray) => [...oldArray, item])
-          console.log("home onValue addItem 2", pedidos);
-        });
-      }
-    });
-
+    init();
   }, []);
 
   const clickRemoverFood = async (idCart) => {

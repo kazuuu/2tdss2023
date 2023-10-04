@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,9 +10,15 @@ import {
 } from 'react-native';
 
 import api from '../constants/dummyData'
+import { getImage } from '../constants/images';
 
 const FoodItem = ({data, selected, Bottom}) => {
-  console.log("Food Item", data);
+  // [imagePath, setImagePath] = useState();
+
+  // console.log("FoodItem 1", data);
+  // console.log("FoodItem 2", imagePath);
+  // setImagePath(data.imagePath);
+
   const styles = StyleSheet.create({
     container: {
       flexDirection: 'column',
@@ -72,13 +78,24 @@ const FoodItem = ({data, selected, Bottom}) => {
       </View>
 
       <View style={styles.conteudo}>
+        <Text>{data.imagePath}</Text>
         {/* <Image
-          source={require({data.imageFile})}
+          source={data.imagePath ? require(data.imagePath) : null}
           style={{
-          height: 200,
-          width: 200,
-          }}
-        />             */}
+            height: 200,
+            width: 200,
+            }}
+        /> */}
+        <Image
+          source={data.image ? getImage(data.image) : null}
+          style={{
+            height: 200,
+            width: 200,
+            }}
+        />
+
+
+
       </View>
       <View style={styles.conteudo}>
         <Text style={styles.textLarge}>{data.name}</Text>

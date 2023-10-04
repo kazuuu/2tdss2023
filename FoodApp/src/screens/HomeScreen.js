@@ -22,7 +22,6 @@ const HomeScreen = () => {
   const {pedidos, setPedidos} = useContext(PedidosContext);
 
   useEffect(() => { 
-
     // console.log("home init", pedidos);
 
     // onValue(ref(db, '/pedidos'), (snapshot) => {
