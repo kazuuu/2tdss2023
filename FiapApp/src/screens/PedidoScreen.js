@@ -14,23 +14,7 @@ import { push, set, ref, onValue, remove, update, child } from 'firebase/databas
 
 const PedidoScreen = () => {
 
-  const { pedidos, setPedidos } = useContext(PedidosContext);
-
-  useEffect(() => { 
-
-    const init = async () => {
-      onValue(ref(db, '/pedidos'), (snapshot) => {
-        const data = snapshot.val();
-        if (data != null) {
-          Object.values(data).map((item) => {
-            setPedidos(oldArray => [...oldArray, item])
-          });
-        }
-      });
-    }
-
-    init();
-  }, []);
+  const { pedidos } = useContext(PedidosContext);
 
   const clickRemoverFood = async (idCart) => {
     console.log("remover 1", idCart)

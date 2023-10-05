@@ -12,17 +12,19 @@ import api from '../constants/dummyData'
 import CategoryItem from '../components/categoryItem';
 import FoodItem from '../components/foodItem';
 import { PedidosContext } from '../contexts/PedidosContext';
-import { db } from '../configs/firebaseConfig';
-import { push, set, ref, onValue, remove, update, child } from 'firebase/database';
 
 const HomeScreen = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(-1);
   const [foodList, setFoodList] = useState([]);
 
-  const {pedidos, setPedidos} = useContext(PedidosContext);
+  const {pedidos, initPedidos, addPedido} = useContext(PedidosContext);
 
-  useEffect(() => { 
+  useEffect(() => {
+    const init = async () => {
+      initPedidos();
+    }
 
+    init();
   }, []);
 
   const clickCategory = (categoryId) => {
@@ -36,23 +38,9 @@ const HomeScreen = () => {
       setFoodList(api.foodListTemp3);
   }
 
-  const clickAdicionarFood = async (food) => {
-    console.log("Adicionar 1", food)
-    let s = await AsyncStorage.getItem('pedidos');
-
-    if (s == null) {
-      console.log("Adicionar 2")
-      await setPedidos([]);
-    } else {
-      console.log("Adicionar 3", s)
-      await setPedidos(JSON.parse(s));
-      console.log("Adicionar 4", pedidos)
-    }
-      
-    console.log("Adicionar 5", pedidos)
-    
+  const clickAdicionarFood = async (food) => {   
     // Cria um id único baseado na data e hora 
-    let idCart = Math.floor(Date.now());
+    let idPedido = Math.floor(Date.now());
 
     //*** Para adicionar um atributo em um Objeto é aconselhável utilizar o 
     // Spread operator (...)
