@@ -12,25 +12,6 @@ export default function CadastrarScreen({ navigation }) {
     senhaConfirmacao: ""
   });
 
-  const cadastrar = async () => {
-    if (registerInformation.email == '') {
-        alert('Favor preencher com seu email');
-        return;
-    }
-
-    if (registerInformation.senha == '') {
-        alert('Favor preencher sua senha');
-        return;
-    }
-
-    createUserWithEmailAndPassword(auth, registerInformation.email, registerInformation.senha)
-    .then(() => {
-        navigation.replace('Lista')
-    }).catch((err) => {
-        console.log("Criar Usuario", err)
-    });
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.bodyContainer}>
@@ -81,7 +62,7 @@ export default function CadastrarScreen({ navigation }) {
           />
         </View>      
         <View style={styles.textInputRow}>
-          <Pressable style={styles.button} onPress={cadastrar}>
+          <Pressable style={styles.button}>
             <Text style={styles.buttonText}>Cadastrar</Text>
           </Pressable >
         </View>

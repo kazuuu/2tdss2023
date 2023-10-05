@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, Pressable, StatusBar, FlatList, 
   TextInput, ActivityIndicator, Modal } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { signOut } from 'firebase/auth';
-import { auth, db } from '../configs/fiap_firebase';
-import { set, ref, onValue, remove, update, equalTo, query, 
-    orderByChild, push, child } from "firebase/database";
   
 export default function ListaScreen({ navigation }) {
   const [data, setData] = useState([]);
@@ -14,87 +10,6 @@ export default function ListaScreen({ navigation }) {
   const [itemEditId, setItemEditId] = useState('');  
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => { 
-    console.log('Effect 1');
-    // Se já estiver autenticado, redirecionar para a tela de Lista
-    auth.onAuthStateChanged((user) => {
-        console.log('Effect 2', user);
-        
-      if (user == null) {
-        navigation.replace('Login');
-      } else {
-        const currentUserItemsRef = query(ref(db, 'items'), orderByChild('userId'), equalTo(auth.currentUser.uid));
-
-        onValue(currentUserItemsRef, (snapshot) => {
-          setData([]);
-          const data = snapshot.val();
-          if (data !== null) {
-            Object.values(data).map((item) => {
-              setData((oldArray) => [...oldArray, item]);
-            });
-          }
-        });
-
-      }
-    });
-  }, []);
-
-
-  const sair = () => {
-   signOut(auth);
-  }
-
-  // add
-  const adicionar = () => {
-    setLoading(true);
-    const id = push(child(ref(db), 'items')).key
-
-    set(ref(db, `/items/${id}`), {
-      id: id,
-      descricao: inputItem,
-      userId: auth.currentUser.uid,
-    })
-    .catch((err) => {
-      alert(err.message);
-    })
-    .finally(() => {
-      setLoading(false)
-    });
-
-    setInputItem('');
-  };
-
-  // update
-  const alterar = () => {
-    setLoading(true);
-
-    update(ref(db, `/items/${itemEditId}`), {
-      descricao: inputItemEdit
-    })
-    .catch((err) => {
-      alert(err.message);
-    })
-    .finally(() => {
-      setLoading(false)
-    });
-
-    setInputItemEdit('');
-    setItemEditId('');
-    setModalVisible(false);
-  };
-
-  // delete
-  const deletar = (id) => {
-    setLoading(true);
-    remove(ref(db, `/items/${id}`))
-    .catch((err) => {
-      alert(err.message);
-    })
-    .finally(() => {
-      setLoading(false)
-    });
-  };
 
   const openEditModal = (id, text) => {
     setItemEditId(id);
@@ -106,7 +21,7 @@ export default function ListaScreen({ navigation }) {
     <View style={styles.container}>
       <View style={styles.bodyContainer}>
         <View style={styles.textInputRow}>
-          <Pressable style={styles.button} onPress={sair}>
+          <Pressable style={styles.button}>
             <Text style={styles.buttonText}>Sair</Text>
           </Pressable >
         </View>      
@@ -117,7 +32,7 @@ export default function ListaScreen({ navigation }) {
             value = { inputItem }
             onChangeText = {(value) => setInputItem(value)}
           />
-          <Pressable style={styles.textInputButton} onPress={()=> adicionar()}>
+          <Pressable style={styles.textInputButton}>
             <Text style={styles.textInputButtonText}>Adicionar</Text>
           </Pressable >
         </View>
@@ -158,7 +73,7 @@ export default function ListaScreen({ navigation }) {
               value = { inputItemEdit }
               onChangeText = {(value) => setInputItemEdit(value)}
             />
-            <Pressable style={styles.textInputButton} onPress={()=> alterar()}>
+            <Pressable style={styles.textInputButton}>
               <Text style={styles.textInputButtonText}>Alterar</Text>
             </Pressable >
           </View>
