@@ -38,6 +38,9 @@ const LoginScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.bodyContainer}>
+       <View style={styles.textInputRow}>
+        <Text>Login: teste4@teste.com  Senha: 123abc</Text>
+       </View>      
         <View style={styles.textInputRow}>
           <TextInput
             style={styles.textInput} 

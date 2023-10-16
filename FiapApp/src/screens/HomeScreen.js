@@ -39,28 +39,7 @@ const HomeScreen = () => {
   }
 
   const clickAdicionarFood = async (food) => {   
-    // Cria um id único baseado na data e hora 
-    let idPedido = Math.floor(Date.now());
-
-    //*** Para adicionar um atributo em um Objeto é aconselhável utilizar o 
-    // Spread operator (...)
-    food = {...food, "idCart": idCart}
-    
-
-    //*** Para adicionar um item em um Array é aconselhável utilizar o 
-    // Spread operator (...), porém se for utilizaro push precisa lembrar
-    // de utilizar de forma sincrona com o await */
-    //    await pedidos.push(food);
-    // ou com spread operator:
-    //    pedidos = [...pedidos, food];
-    await setPedidos([...pedidos, food]);
-    console.log("Adicionar 6", pedidos);
-
-    // Lembrar de transformar o objeto em uma string antes de gravar
-    // no AsyncStorage
-    await AsyncStorage.setItem('pedidos', JSON.stringify(pedidos));
-    alert('Adicionado')   
-
+    addPedido(food);
   }
 
   return (

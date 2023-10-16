@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -14,7 +14,7 @@ import { push, set, ref, onValue, remove, update, child } from 'firebase/databas
 
 const PedidoScreen = () => {
 
-  const { pedidos } = useContext(PedidosContext);
+  const { pedidos, nextPage } = useContext(PedidosContext);
 
   const clickRemoverFood = async (idCart) => {
     console.log("remover 1", idCart)
@@ -26,6 +26,8 @@ const PedidoScreen = () => {
     <View style={styles.container}>
       <Text>PEDIDOS SCREEN</Text>
       <FlatList
+        onEndReached={nextPage}
+        onEndReachedThreshold={0.1}        
         data={pedidos}
         renderItem={({item}) => (
           <FoodItem data={item} Bottom={() => {

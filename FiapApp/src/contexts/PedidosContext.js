@@ -1,16 +1,18 @@
 import { createContext, useState } from "react";
 import { db } from '../configs/firebaseConfig';
-import { ref, onValue } from 'firebase/database';
+import { ref, onValue, push, child, set } from 'firebase/database';
 
 export const PedidosContext = createContext();
 
 export function PedidosContextProvider({children}) {
   const [pedidos, setPedidos] = useState([]);
+  const [page, setPage] = useState(0);
 
   const initPedidos = async () => {
     onValue(ref(db, '/pedidos'), (snapshot) => {
       const data = snapshot.val();
       if (data != null) {
+        console.log("initPedidos", data)
         Object.values(data).map((item) => {
           setPedidos(oldArray => [...oldArray, item])
         });
@@ -19,7 +21,13 @@ export function PedidosContextProvider({children}) {
   } 
 
   const addPedido = async (pedido) => {
+
+    pedido = {...pedido, idCart: new Date().getTime()}
+
+    console.log("addPedido", pedido);
+
     const id = push(child(ref(db), 'pedidos')).key;
+    console.log("addPedidos 2", id);
 
     set(ref(db, `/pedidos/${id}`), pedido)
     .catch((err) => { alert(error);})
@@ -35,8 +43,16 @@ export function PedidosContextProvider({children}) {
     .catch((err) => { alert(error);})
   } 
 
+  const nextPage = async () => {
+    return;
+    setPage(page + 1);
+    console.log("Next Page", page);
+    await setPedidos(oldArray => [...oldArray, ...oldArray])
+  } 
+
+
   return (
-    <PedidosContext.Provider value={{ pedidos, initPedidos, addPedido, removePedido, alterarPedido }}>
+    <PedidosContext.Provider value={{ pedidos, initPedidos, addPedido, removePedido, alterarPedido, nextPage }}>
       {children}
     </PedidosContext.Provider>
   );
