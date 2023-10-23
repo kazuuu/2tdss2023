@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
-import { db } from '../configs/firebaseConfig';
-import { ref, onValue, push, child, set } from 'firebase/database';
+import { db, auth } from '../configs/firebaseConfig';
+import { ref, onValue, push, child, set, query, orderByChild, equalTo } from 'firebase/database';
 
 export const PedidosContext = createContext();
 
@@ -9,7 +9,10 @@ export function PedidosContextProvider({children}) {
   const [page, setPage] = useState(0);
 
   const initPedidos = async () => {
-    onValue(ref(db, '/pedidos'), (snapshot) => {
+
+    const dataQuery = query(ref(db, 'pedidos'), orderByChild('userId'), equalTo(auth.currentUser.uid));
+
+    onValue(dataQuery, (snapshot) => {
       const data = snapshot.val();
       if (data != null) {
         console.log("initPedidos", data)
@@ -22,7 +25,11 @@ export function PedidosContextProvider({children}) {
 
   const addPedido = async (pedido) => {
 
-    pedido = {...pedido, idCart: new Date().getTime()}
+    pedido = {
+      ...pedido, 
+      idCart: new Date().getTime(),
+      userId: auth.currentUser.uid
+    }
 
     console.log("addPedido", pedido);
 
@@ -30,7 +37,7 @@ export function PedidosContextProvider({children}) {
     console.log("addPedidos 2", id);
 
     set(ref(db, `/pedidos/${id}`), pedido)
-    .catch((err) => { alert(error);})
+    .catch((err) => { console.log('addPedido error', err);})
   } 
 
   const removePedido = async (pedidoId) => {

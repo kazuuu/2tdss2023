@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import PedidoScreen from '../screens/PedidoScreen';
+import FlexScreen from '../screens/FlexScreen';
 
 const TabNavigator = () => {
   const Tab = createBottomTabNavigator();
@@ -40,6 +41,15 @@ const TabNavigator = () => {
         tabBarLabel: 'Pedido',
         tabBarIcon: ({focused, color, size}) => (
           <Ionicons name="information-circle" color={color} size={size} />
+        )
+      }}          
+    />
+    <Tab.Screen 
+      name="Flex" component={FlexScreen} 
+      options={{
+        tabBarLabel: 'Flex',
+        tabBarIcon: ({focused, color, size}) => (
+          <Ionicons name="at-outline" color={color} size={size} />
         )
       }}          
     />

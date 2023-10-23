@@ -18,8 +18,7 @@ const PedidoScreen = () => {
 
   const clickRemoverFood = async (idCart) => {
     console.log("remover 1", idCart)
-    await setPedidos(pedidos.filter(obj => obj.idCart !== idCart));
-    await AsyncStorage.setItem('pedidos', JSON.stringify(pedidos))
+    // await setPedidos(pedidos.filter(obj => obj.idCart !== idCart));
   }
 
   return (
